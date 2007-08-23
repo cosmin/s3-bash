@@ -1,5 +1,6 @@
 #! /bin/bash
 cat > /dev/null << EndOfLicence
+s3-bash
 Copyright 2007 Raphael James Cohn
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
@@ -34,7 +35,8 @@ checkEnvironment
 function printHelpAndExit
 {
 	exitCode=$1
-	printf "%s: version %s\n" "$weAreKnownAs" "0.00"
+	printf "%s: version %s\n" "$weAreKnownAs" "$version"
+	printf "Part of s3-bash. Latest version is at %s\n" 'http://code.google.com/p/s3-bash/'
 	printf "Usage %s: -h\n" "$weAreKnownAs"
 	printf "Usage %s: [-vS] [-H file] [-a file] -k key -s file url\n" "$weAreKnownAs"
 	printf " Option\tType\tRequirement\tDescription\n"
