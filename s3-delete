@@ -30,8 +30,6 @@ else
 	exit 2
 fi
 
-checkEnvironment
-
 function printHelpAndExit
 {
 	exitCode=$1
@@ -93,6 +91,7 @@ function parseOptions
 	fi
 }
 
+checkEnvironment
 parseOptions "$@"
 
 readonly verb="DELETE"
