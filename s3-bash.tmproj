@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>currentDocument</key>
+	<string>s3-delete</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -11,27 +13,117 @@
 		<dict>
 			<key>filename</key>
 			<string>s3-common-functions</string>
+			<key>lastUsed</key>
+			<date>2007-09-24T14:58:49Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>s3-delete</string>
+			<key>lastUsed</key>
+			<date>2007-09-24T14:59:03Z</date>
+			<key>selected</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>s3-get</string>
+			<key>lastUsed</key>
+			<date>2007-09-24T14:59:03Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>s3-put</string>
+			<key>lastUsed</key>
+			<date>2007-09-24T14:58:53Z</date>
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
 	<integer>200</integer>
 	<key>metaData</key>
-	<dict/>
+	<dict>
+		<key>s3-common-functions</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>30</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>10</integer>
+		</dict>
+		<key>s3-delete</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>2</integer>
+				<key>line</key>
+				<integer>30</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>22</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>1</integer>
+				<key>line</key>
+				<integer>52</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>2</integer>
+				<key>line</key>
+				<integer>30</integer>
+			</dict>
+		</dict>
+		<key>s3-get</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>96</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>65</integer>
+		</dict>
+		<key>s3-put</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>1</integer>
+				<key>line</key>
+				<integer>100</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>72</integer>
+		</dict>
+	</dict>
+	<key>openDocuments</key>
+	<array>
+		<string>s3-common-functions</string>
+		<string>s3-delete</string>
+		<string>s3-put</string>
+		<string>s3-get</string>
+	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{1206, 73}, {1280, 790}}</string>
+	<string>{{2878, 245}, {1280, 790}}</string>
 </dict>
 </plist>

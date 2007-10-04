@@ -99,7 +99,7 @@ checkEnvironment
 parseOptions "$@"
 
 readonly verb="GET"
-readonly currentDateTime="$(date "+%a, %d %h %Y %T %z")"
+readonly currentDateTime="$(LC_TIME=C date "+%a, %d %h %Y %T %z")"
 readonly authorizationHeader="$(computeAwsAuthorizationHeader)"
 
 # TODO: If passed a content to put, specify content MD5 type

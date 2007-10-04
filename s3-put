@@ -104,7 +104,7 @@ checkEnvironment
 parseOptions "$@"
 
 readonly verb="PUT"
-readonly currentDateTime="$(date "+%a, %d %h %Y %T %z")"
+readonly currentDateTime="$(LC_TIME=C date "+%a, %d %h %Y %T %z")"
 
 if [ ! "-" = "$fileToUpload" ]; then
 	readonly contentMD5="$(base64EncodedMD5 "$fileToUpload")"

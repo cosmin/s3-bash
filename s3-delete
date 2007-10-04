@@ -95,7 +95,7 @@ checkEnvironment
 parseOptions "$@"
 
 readonly verb="DELETE"
-readonly currentDateTime="$(date "+%a, %d %h %Y %T %z")"
+readonly currentDateTime="$(LC_TIME=C date "+%a, %d %h %Y %T %z")"
 
 readonly contentMD5=""
 readonly contentType=""
