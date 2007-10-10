@@ -113,7 +113,7 @@ if [ -e "$commonFunctions" ]; then
 else
 	version="Unknown"
 	invalidEnvironmentExitCode=4
-	printHelpAndExit "$weAreKnownAs: Could not locate file s3-common-functions" $invalidEnvironmentExitCode
+	printErrorHelpAndExit "$weAreKnownAs: Could not locate file s3-common-functions" $invalidEnvironmentExitCode
 fi
 
 main "$@"
