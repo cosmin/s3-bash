@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 cat > /dev/null << EndOfLicence
 s3-bash
 Copyright 2007 Raphael James Cohn
@@ -18,17 +18,6 @@ EndOfLicence
 # Pragmas
 set -u
 set -e
-
-readonly weAreKnownAs="$(basename $0)"
-readonly ourPath="$(dirname $0)"
-
-readonly commonFunctions="$ourPath/s3-common-functions"
-if [ -e "$commonFunctions" ]; then
-	source "$commonFunctions"
-else
-	printf "%s: Could not locate file s3-common-functions" "$weAreKnownAs" 1>&2
-	exit 2
-fi
 
 function printHelpAndExit
 {
@@ -68,38 +57,50 @@ function parseOptions
 			k)	awsAccessKeyId="$OPTARG";;
 			s)	awsAccessSecretKeyIdFile="$OPTARG"
 				if [ ! -e "$awsAccessSecretKeyIdFile" ]; then
-					printErrorHelpAndExit "AWS Secret Key Id file does not exist" 1
+					printErrorHelpAndExit "AWS Secret Key Id file does not exist" $userSpecifiedDataErrorExitCode
 				fi;;
 			S)	protocol="https";;
 			H)	dumpHeaderFile="$OPTARG";;
 			a)	amazonHeaderFile="$OPTARG";;
-			[?])	printErrorHelpAndExit "Option not recognised" 1;;
+			[?])	printErrorHelpAndExit "Option not recognised" $userSpecifiedDataErrorExitCode;;
 		esac
 	done
+	if [ 1 -eq $OPTIND ]; then
+		printErrorHelpAndExit "Internal Error: parseOptions or a parent method in the call stack was not called with $"@"." $internalErrorExitCode
+	fi
 	let "toShift = $OPTIND - 1"
 	shift $toShift
 	if [ $# -eq 0 ]; then
-		printErrorHelpAndExit "URL not specified" 1
+		printErrorHelpAndExit "URL not specified" $userSpecifiedDataErrorExitCode
 	fi
 	url="$1"
 	verifyUrl
 		
 	if [ -z "$awsAccessSecretKeyIdFile" ]; then
-		printErrorHelpAndExit "AWS Secret Access Key file not specified" 1
+		printErrorHelpAndExit "AWS Secret Access Key file not specified" $userSpecifiedDataErrorExitCode
 	elif [ -z "$awsAccessKeyId" ]; then
-		printErrorHelpAndExit "AWS Access Key Id not specified" 1
+		printErrorHelpAndExit "AWS Access Key Id not specified" $userSpecifiedDataErrorExitCode
 	fi
 }
 
-checkEnvironment
-parseOptions "$@"
+function prepareToRunCurl
+{
+	readonly verb="DELETE"
+	readonly verbToPass="-X DELETE"
+	readonly contentMD5=""
+	readonly contentType=""
+}
 
-readonly verb="DELETE"
-readonly currentDateTime="$(LC_TIME=C date "+%a, %d %h %Y %T %z")"
+readonly weAreKnownAs="$(basename $0)"
+readonly ourPath="$(dirname $0)"
 
-readonly contentMD5=""
-readonly contentType=""
-readonly verbToPass="-X DELETE"
+readonly commonFunctions="$ourPath/s3-common-functions"
+if [ -e "$commonFunctions" ]; then
+	source "$commonFunctions"
+else
+	version="Unknown"
+	invalidEnvironmentExitCode=4
+	printHelpAndExit "$weAreKnownAs: Could not locate file s3-common-functions" $invalidEnvironmentExitCode
+fi
 
-readonly authorizationHeader="$(computeAwsAuthorizationHeader)"
-runCurl "$verbToPass"
+main "$@"
