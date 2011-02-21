@@ -327,7 +327,7 @@ function main
 {
 	initialise
 	parseOptions "$@"
-	readonly currentDateTime="$(LC_TIME=C date "+%a, %d %h %Y %T %z")"
+	readonly currentDateTime="$(LC_TIME=C TZ=utc date "+%a, %d %h %Y %T %z")"
 	prepareToRunCurl
 	readonly authorizationHeader="$(computeAwsAuthorizationHeader)"
 	runCurl "$verbToPass"
