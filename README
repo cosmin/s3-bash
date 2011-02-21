@@ -1,0 +1,15 @@
+> Get bucket listing:
+
+s3-get -k {accesskey} -s /{path}/{secretid} /{bucketname}
+
+> Get file from bucket:
+
+s3-get -k {accesskey} -s /{path}/{secretid} /{bucketname}/{filename} > {filename}
+
+> Upload file to bucket:
+
+s3-put -k {accesskey} -s /{path}/{secretid} -T /{path}/{filename} /{bucketname}/{filename} 
+
+> Delete from bucket:
+
+s3-delete -k {accesskey} -s /{path}/{secretid} /{bucketname}/{filename}
