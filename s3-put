@@ -29,6 +29,7 @@ function printHelpAndExit
 	printf " Option\tType\tRequirement\tDescription\n"
 	printf " -h\t\tprecedent\tprint this help\n"
 	printf " -v\t\toptional\tverbose output\n"
+	printf " -e\t\toptional\ts3 endpoint (default: s3.amazonaws.com)\n"
 	printf " -k\tstring\tmandatory\tAWS Access Key Id\n"
 	printf " -s\tfile\tmandatory\tAWS Secret Access Key Id File\n"
 	printf " -T\tfile\tmandatory\tFile (or stdin with -) to PUT\n"
@@ -47,6 +48,7 @@ function printHelpAndExit
 function parseOptions
 {
 	verbose=""
+	endpoint="s3.amazonaws.com"
 	url=""
 	awsAccessKeyId=""
 	awsAccessSecretKeyIdFile=""
@@ -55,10 +57,11 @@ function parseOptions
 	dumpHeaderFile="/dev/null"
 	amazonHeaderFile="/dev/null"
 	contentType="text/plain"
-	while getopts "hvk:s:SH:T:a:c:" optionName; do		
+	while getopts "hvk:s:SH:T:a:c:e:" optionName; do
 		case "$optionName" in
 			h)	printHelpAndExit 0;;
 			v)	verbose="-v";;
+			e)	endpoint="$OPTARG";;
 			k)	awsAccessKeyId="$OPTARG";;
 			s)	awsAccessSecretKeyIdFile="$OPTARG"
 				if [ ! -e "$awsAccessSecretKeyIdFile" ]; then
