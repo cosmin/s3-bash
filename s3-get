@@ -46,6 +46,7 @@ function printHelpAndExit
 function parseOptions
 {
 	verbose=""
+	endpoint="s3.amazonaws.com"
 	url=""
 	awsAccessKeyId=""
 	awsAccessSecretKeyIdFile=""
