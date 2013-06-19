@@ -295,7 +295,7 @@ function writeAmazonHeadersForCurl
 function runCurl
 {
 	local verbAndAnyData="$1"
-	local fullUrl="$protocol://s3.amazonaws.com$url"
+	local fullUrl="$protocol://$endpoint$url"
 	createTemporaryFile "curl"
 	local tempCurlCommand="$(mostRecentTemporaryFile)"
 	local cleanUpCommand="rm -f "$tempCurlCommand""
