@@ -38,3 +38,4 @@ function tarball
 
 initialise
 tarball
+echo "$temporaryDirectory/s3-bash.$version.tar.gz"
