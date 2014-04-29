@@ -58,11 +58,5 @@ function tests
 	fi
 }
 
-function tarball
-{
-	tar -c s3-put s3-get s3-delete s3-common-functions Licence | gzip > "$temporaryDirectory/s3-bash.$version.tar.gz"
-}
-
 initialise
 tests
-tarball
