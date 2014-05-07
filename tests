@@ -31,11 +31,32 @@ else
 	printErrorHelpAndExit "$weAreKnownAs: Could not locate file s3-common-functions" $invalidEnvironmentExitCode
 fi
 
-function tarball
+function tests
 {
-	tar -c s3-put s3-get s3-delete s3-common-functions Licence | gzip > "$temporaryDirectory/s3-bash.$version.tar.gz"
+	if [ ! -f secret-key ]; then
+		printErrorHelpAndExit "Internal Error: No secret key file (secret-key) exists on the path"
+	fi
+	createTemporaryFile "somefile"
+	somefile="$(mostRecentTemporaryFile)"
+	echo "Testing" > "$somefile"
+	url=/raphaelcohn-ami/somefile
+	"$ourPath/s3-delete" -k $S3_SECRET_KEY -s "$ourPath/secret-key" $url
+	if [ $? -ne 0 ]; then
+		printErrorHelpAndExit "Internal Error: s3-delete failed"
+	fi
+	"$ourPath/s3-put" -T "$somefile" -k $S3_SECRET_KEY -s "$ourPath/secret-key" $url
+	if [ $? -ne 0 ]; then
+		printErrorHelpAndExit "Internal Error: s3-put failed"
+	fi
+	"$ourPath/s3-get" -k $S3_SECRET_KEY -s "$ourPath/secret-key" $url
+	if [ $? -ne 0 ]; then
+		printErrorHelpAndExit "Internal Error: s3-get failed"
+	fi
+	"$ourPath/s3-delete" -k $S3_SECRET_KEY -s "$ourPath/secret-key" $url
+	if [ $? -ne 0 ]; then
+		printErrorHelpAndExit "Internal Error: s3-delete failed"
+	fi
 }
 
 initialise
-tarball
-echo "$temporaryDirectory/s3-bash.$version.tar.gz"
+tests

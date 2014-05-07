@@ -20,7 +20,7 @@ set -u
 set -e
 
 # Constants
-readonly version="0.02"
+readonly version="0.03"
 readonly userSpecifiedDataErrorExitCode=1
 readonly invalidCommandLineOption=2
 readonly internalErrorExitCode=3
