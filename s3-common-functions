@@ -34,7 +34,7 @@ readonly base64encode="openssl enc -base64 -e -in"
 readonly base64decode="openssl enc -base64 -d -in"
 
 # Globals
-declare -a temporaryFiles
+temporaryFiles=( )
 
 function base64EncodedMD5
 {
