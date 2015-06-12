@@ -226,6 +226,9 @@ function writeStringToSign
 	echo "$contentMD5" >> "$outputFile"
 	echo "$contentType" >> "$outputFile"
 	echo "$currentDateTime" >> "$outputFile"
+	if [ "$publicRead" == "yes" ]; then
+		echo "x-amz-acl:public-read" >> "$outputFile"
+	fi
 	
 	writeStringToSignAmazonHeaders "$outputFile"
 	
@@ -310,6 +313,9 @@ function runCurl
 	fi
 	if [ ! -z "$contentMD5" ]; then
 		printf " --header \"Content-MD5: %s\"" "$contentMD5" >> "$tempCurlCommand"
+	fi
+	if [ "$publicRead" == "yes" ]; then
+		printf " --header \"x-amz-acl: public-read\"" >> "$tempCurlCommand"
 	fi
 	printf " \"%s\"\n" "$fullUrl" >> "$tempCurlCommand"
 	

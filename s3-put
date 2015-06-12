@@ -37,6 +37,7 @@ function printHelpAndExit
 	printf " -H\tfile\toptional\tFile to write response headers to\n"
 	printf " -a\tfile\toptional\tFile to read Amazon custom headers from (X-Amz-Date is not allowed)\n"
 	printf " -c\tMIME\toptional\tMIME Content type. Default is text/plain\n"
+	printf " -p\t\tgrant public read on uploaded file\n"
 	printf " \turl\tmandatory\trelative url including bucket name and leading slash, eg /bucket/path/to/object?acl. Assumed to be already encoded\n"
 	printf "\n"
 	printf "Notes\n"
@@ -57,7 +58,8 @@ function parseOptions
 	dumpHeaderFile="/dev/null"
 	amazonHeaderFile="/dev/null"
 	contentType="text/plain"
-	while getopts "hvk:s:SH:T:a:c:e:" optionName; do
+	publicRead=""
+	while getopts "hvk:s:SH:T:a:c:e:p" optionName; do
 		case "$optionName" in
 			h)	printHelpAndExit 0;;
 			v)	verbose="-v";;
@@ -72,6 +74,7 @@ function parseOptions
 			T)	fileToUpload="$OPTARG";;
 			a)	amazonHeaderFile="$OPTARG";;
 			c)	contentType="$OPTARG";;
+			p)	publicRead="yes";;
 			[?])	printErrorHelpAndExit "Option not recognised" $userSpecifiedDataErrorExitCode;;
 		esac
 	done
