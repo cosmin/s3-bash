@@ -108,4 +108,7 @@ else
 	printErrorHelpAndExit "$weAreKnownAs: Could not locate file s3-common-functions" $invalidEnvironmentExitCode
 fi
 
+# variable added to common that is used in s3-put
+publicRead=""
+
 main "$@"
