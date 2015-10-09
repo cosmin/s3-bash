@@ -19,7 +19,7 @@ EndOfLicence
 set -u
 set -e
 
-function printHelpAndExit
+function printErrorHelpAndExit
 {
 	exitCode=$1
 	printf "%s: version %s\n" "$weAreKnownAs" "$version"
